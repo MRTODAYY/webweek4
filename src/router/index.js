@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import UserView from '../views/element/UserView.vue'
-import QuestionView from'@/views/element/QuestionView.vue'
+import QuestionView from '../views/element/QuestionView.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    redirect: '/user'
+    redirect: '/user' // 默认打开网页时，自动跳转到用户管理页面
   },
   {
     path: '/user',
@@ -22,6 +23,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes
 })
 

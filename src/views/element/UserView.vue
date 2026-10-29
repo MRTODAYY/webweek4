@@ -1,20 +1,21 @@
 <template>
   <el-container>
     <!-- <el-header>Header</el-header> -->
-    <el-header style="font-size: 40px; background-color: rgb(238, 241, 246)"
-      >Quiz后台管理</el-header
-    >
+    <el-header style="font-size: 40px; background-color: rgb(238, 241, 246)">
+      Quiz后台管理
+    </el-header>
     <el-container>
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-        <el-menu :default-openeds="['1']">
+        <!-- 加了 router 属性和 default-active，用于路由跳转和菜单高亮 -->
+        <el-menu :default-openeds="['1']" :default-active="$route.path" router>
           <el-submenu index="1">
-            <template slot="title"
-              ><i class="el-icon-setting"></i>管理选项</template
-            >
+            <template slot="title">
+              <i class="el-icon-setting"></i>管理选项
+            </template>
             <el-menu-item-group>
               <template slot="title">用户与题目</template>
-              <el-menu-item index="1-1"><router-link to="/user">用户管理</router-link></el-menu-item>
-              <el-menu-item index="1-2"><router-link to="/question">题目管理</router-link></el-menu-item>
+              <el-menu-item index="/user">用户管理</el-menu-item>
+              <el-menu-item index="/question">题目管理</el-menu-item>
             </el-menu-item-group>
 
             <!-- <el-menu-item-group title="分组2">
@@ -59,7 +60,7 @@
           <el-form-item>
             <el-button type="primary" @click="onSubmit">查询</el-button>
           </el-form-item>
-
+          <!-- 恢复：添加用户按钮 -->
           <el-form-item>
             <el-button type="success" @click="onAddNewUser">添加用户</el-button>
           </el-form-item>
@@ -86,15 +87,8 @@
           </el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
-                >编辑</el-button
-              >
-              <el-button
-                size="mini"
-                type="danger"
-                @click="handleDelete(scope.$index, scope.row)"
-                >删除</el-button
-              >
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -111,18 +105,10 @@
               <el-input v-model="form.name" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="密码" :label-width="formLabelWidth">
-              <el-input
-                v-model="form.password"
-                type="password"
-                autocomplete="off"
-              ></el-input>
+              <el-input v-model="form.password" type="password" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="确认密码" :label-width="formLabelWidth">
-              <el-input
-                v-model="form.confirmpassword"
-                type="password"
-                autocomplete="off"
-              ></el-input>
+              <el-input v-model="form.confirmpassword" type="password" autocomplete="off"></el-input>
             </el-form-item>
             <!-- <el-form-item label="活动区域" :label-width="formLabelWidth">
               <el-select v-model="form.region" placeholder="请选择活动区域">
@@ -133,9 +119,7 @@
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="dialogFormVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogFormVisible = false"
-              >确 定</el-button
-            >
+            <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
           </div>
         </el-dialog>
       </el-main>
@@ -162,6 +146,7 @@ export default {
         region: "",
       },
 
+      // 恢复：完整的 4 条数据
       tableData: [
         {
           date: "2016-05-02",

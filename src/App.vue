@@ -4,7 +4,7 @@
     <!-- <test-button></test-button> -->
     <!-- <user-view></user-view> -->
     <!-- <question-view></question-view> -->
-     <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -14,14 +14,7 @@
 // import UserView from './views/element/UserView.vue';
 
 export default {
+  name: 'App',
   // components: { QuestionView },
-  data() {
-    return {
-      message: "hello vue",
-    };
-  },
-  methods: {
-
-  },
-};
+}
 </script>
